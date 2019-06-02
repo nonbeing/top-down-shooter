@@ -7,7 +7,7 @@
 radius = 36.0
 
 [node name="Player" type="KinematicBody2D"]
-rotation = 0.8668
+position = Vector2( -0.809029, 0.115578 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -22,12 +22,12 @@ animation = "move"
 frame = 19
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 58.301, 16.104 )
 enabled = true
 cast_to = Vector2( 2000, 0 )
 
 [node name="BulletSpawnPoint" type="Position2D" parent="."]
-position = Vector2( 59.5107, 16.6285 )
-rotation = -0.48133
+position = Vector2( 58.301, 16.1037 )
 
 [node name="BulletTrailTimer" type="Timer" parent="."]
 [connection signal="timeout" from="BulletTrailTimer" to="." method="_on_BulletTrailTimer_timeout"]

@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const MOVE_SPEED = 300
 const BULLET_TRAIL_TIME = 0.08  # seconds
+const BULLET_TRAIL_COLOR = "#e2b822"  # html color code
 
 onready var raycast = $RayCast2D
 onready var sprite = get_node("AnimatedSprite")
@@ -85,7 +86,7 @@ func draw_bullet_trail(target):
 	var trail_points = PoolVector2Array([trail_start, trail_end])
 	trail.set_points(trail_points)
 	trail.set_width(2)
-	trail.set_default_color(Color(0.7, 0.7, 0))
+	trail.set_default_color(Color(BULLET_TRAIL_COLOR))
 	add_child(trail)
 	return trail
 
