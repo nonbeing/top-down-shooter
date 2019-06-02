@@ -14,7 +14,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 10.45, -4.75 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.4, 0.4 )
 frames = ExtResource( 2 )
 animation = "move"
 frame = 19
@@ -22,3 +22,9 @@ frame = 19
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 2000, 0 )
+
+[node name="BulletSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 62.8315, 16.3254 )
+
+[node name="BulletTrailTimer" type="Timer" parent="."]
+[connection signal="timeout" from="BulletTrailTimer" to="." method="_on_BulletTrailTimer_timeout"]
