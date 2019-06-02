@@ -12,13 +12,14 @@ onready var bullet_trail_timer = $BulletTrailTimer
 # default player animation is "idle"
 var anim = "idle"
 var trail = null
-
+var screen_size = null
 
 func _ready():
 	yield(get_tree(), "idle_frame")
 	get_tree().call_group("zombies", "set_player", self)
 	bullet_trail_timer.set_wait_time(BULLET_TRAIL_TIME)
 	bullet_trail_timer.set_one_shot(true)
+	screen_size = get_viewport_rect().size
 	
 	
 func _physics_process(delta):
@@ -42,6 +43,11 @@ func _physics_process(delta):
 		anim = "move"
 	
 	move_and_collide(move_vec * MOVE_SPEED * delta)
+	
+	if !screen_size:
+		screen_size = get_viewport_rect().size
+	position.x = clamp(position.x, 40, screen_size.x-40)
+	position.y = clamp(position.y, 40, screen_size.y-40)
 	
 	# turn towards the mouse pointer
 	look_at(get_global_mouse_position())
