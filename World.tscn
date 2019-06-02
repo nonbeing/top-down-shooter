@@ -6,13 +6,13 @@
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 49.8107, 50.9427 )
+position = Vector2( 231.761, 56.7745 )
 
 [node name="Zombie" parent="." instance=ExtResource( 2 )]
-position = Vector2( 633.057, 521.259 )
+position = Vector2( 870.993, 496.765 )
 
 [node name="Zombie2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 931.643, 462.941 )
+position = Vector2( 967.8, 486.268 )
 
 [node name="Zombie3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 789.348, 529.423 )
+position = Vector2( 928.144, 551.584 )
