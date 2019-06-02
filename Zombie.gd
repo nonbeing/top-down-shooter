@@ -22,9 +22,10 @@ func _physics_process(delta):
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
 		if coll.name == "Player":
-			coll.kill()
+			coll.kill_player()
 
-func kill():
+func kill_zombie():
+	# delete this node (i.e. zombie) from the scene
 	queue_free()
 
 func set_player(p):
