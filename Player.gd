@@ -2,11 +2,13 @@ extends KinematicBody2D
 
 const MOVE_SPEED = 300
 const BULLET_TRAIL_TIME = 0.08  # seconds
+
 onready var raycast = $RayCast2D
 onready var sprite = get_node("AnimatedSprite")
 onready var bullet_spawn_point = $BulletSpawnPoint
 onready var bullet_trail_timer = $BulletTrailTimer
 
+# default player animation is "idle"
 var anim = "idle"
 var trail = null
 
@@ -54,7 +56,10 @@ func _physics_process(delta):
 			trail = draw_bullet_trail(to_local(coll.position))
 			coll.kill_zombie()
 		else:
-			trail = draw_bullet_trail(get_local_mouse_position())
+			# Note that y is always 0 in the following Vector2:
+			# The origin is always the center of the player (in the local co-ord system)
+			# so we effectively always want a bullet trail along the positive x-axis where y is 0
+			trail = draw_bullet_trail(50 * Vector2(bullet_spawn_point.position.x, 0))
 		
 		trail_weakref = weakref(trail);
 
@@ -75,12 +80,9 @@ func kill_player():
 	
 func draw_bullet_trail(target):
 	var trail = Line2D.new()
-#	trail.set_name("bullet_trail")
 	var trail_start = Vector2(bullet_spawn_point.position.x, bullet_spawn_point.position.y)
 	var trail_end = Vector2(target.x, target.y)
-	var line_endpoint_vectors = [trail_start, trail_end]
-	
-	var trail_points = PoolVector2Array(line_endpoint_vectors)
+	var trail_points = PoolVector2Array([trail_start, trail_end])
 	trail.set_points(trail_points)
 	trail.set_width(2)
 	trail.set_default_color(Color(0.7, 0.7, 0))
